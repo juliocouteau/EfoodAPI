@@ -1,6 +1,7 @@
-
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux' // Importamos os hooks do Redux
+import { open } from '../../store/reducers/cart' // Importamos a ação de abrir o carrinho
 import logo from '../../assets/logo.png'
 
 const HeaderBar = styled.header`
@@ -13,6 +14,12 @@ const HeaderBar = styled.header`
     justify-content: space-between;
     font-weight: 900;
     font-size: 18px;
+
+    /* Ajuste para telas menores */
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 
   a, span {
@@ -20,7 +27,6 @@ const HeaderBar = styled.header`
     text-decoration: none;
   }
 
-  /* Estilo para mostrar que o texto é clicável */
   span {
     cursor: pointer;
     &:hover {
@@ -29,17 +35,25 @@ const HeaderBar = styled.header`
   }
 `
 
+export const HeaderPerfil = () => {
+  const dispatch = useDispatch() 
+  
 
-export const HeaderPerfil = ({ itensNoCarrinho, openCart }) => (
-  <HeaderBar>
-    <div className="container">
-      <Link to="/">Restaurantes</Link>
-      <img src={logo} alt="efood" width="125px" />
-      
-      
-      <span onClick={openCart}>
-        {itensNoCarrinho} produto(s) no carrinho
-      </span>
-    </div>
-  </HeaderBar>
-)
+  const { items } = useSelector((state) => state.cart)
+
+  return (
+    <HeaderBar>
+      <div className="container">
+        <Link to="/">Restaurantes</Link>
+        
+        <Link to="/">
+          <img src={logo} alt="efood" width="125px" />
+        </Link>
+
+        <span onClick={() => dispatch(open())}>
+          {items.length} produto(s) no carrinho
+        </span>
+      </div>
+    </HeaderBar>
+  )
+}

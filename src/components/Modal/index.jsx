@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import { useDispatch } from 'react-redux' 
+import { add, open } from '../../store/reducers/cart' 
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -10,20 +12,19 @@ const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100; // Aumentei o z-index para garantir que fique acima de tudo
+  z-index: 100;
 `
 
 const ModalContent = styled.div`
   background-color: #E66767;
   padding: 32px;
   max-width: 1024px;
-  width: 90%; // Largura responsiva
+  width: 90%;
   position: relative;
   display: flex;
   color: #FFF;
   gap: 24px;
 
-  /* Ajuste para telas menores */
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -98,7 +99,6 @@ const BotaoAdicionar = styled.button`
   }
 `
 
-// Função auxiliar para formatar preço em Real
 const formatarPreco = (preco) => {
   return new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -106,29 +106,33 @@ const formatarPreco = (preco) => {
   }).format(preco)
 }
 
-export const Modal = ({ aberto, fecharModal, adicionarAoCarrinho, prato }) => {
-  // Se o modal não estiver aberto ou o prato ainda não tiver sido carregado, não renderiza nada
+export const Modal = ({ aberto, fecharModal, prato }) => {
+  const dispatch = useDispatch() // Inicializamos o disparador de ações
+
+  // Se o modal não estiver aberto ou o prato não existir, não renderiza nada
   if (!aberto || !prato) return null;
+
+  // Função que lida com o clique de adicionar ao carrinho
+  const handleAddToCart = () => {
+    dispatch(add(prato)) // Envia o prato para o Redux
+    dispatch(open())     // Abre a barra lateral do carrinho
+    fecharModal()        // Fecha a modal de detalhes
+  }
 
   return (
     <ModalOverlay onClick={fecharModal}>
       <ModalContent onClick={(e) => e.stopPropagation()}>
-        
         <BotaoFechar onClick={fecharModal}>&times;</BotaoFechar>
         
-        {/* API usa 'foto' em vez de 'imagem' para os pratos */}
         <img className="foto-prato" src={prato.foto} alt={prato.nome} />
         
         <InfoContainer>
           <h3>{prato.nome}</h3>
-          
-          {/* Agora exibindo a descrição real do prato da API */}
           <p>{prato.descricao}</p>
-          
-          {/* Agora exibindo a porção real da API */}
           <span>Serve: {prato.porcao}</span>
           
-          <BotaoAdicionar onClick={adicionarAoCarrinho}>
+          {/* Agora o botão chama a nossa nova função handleAddToCart */}
+          <BotaoAdicionar onClick={handleAddToCart}>
             Adicionar ao carrinho - {formatarPreco(prato.preco)}
           </BotaoAdicionar>
         </InfoContainer>
