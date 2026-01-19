@@ -1,16 +1,58 @@
-# React + Vite
+# 🥡 EfoodAPI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![GitHub repo size](https://img.shields.io/github/repo-size/SEU_USUARIO/EfoodAPI?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/SEU_USUARIO/EfoodAPI?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/SEU_USUARIO/EfoodAPI?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/SEU_USUARIO/EfoodAPI?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/SEU_USUARIO/EfoodAPI?style=for-the-badge)
 
-Currently, two official plugins are available:
+> Uma API RESTful robusta para gestão de restaurantes e pedidos de delivery, desenvolvida como parte do desafio [NOME DO CURSO/BOOTCAMP, ex: EBAC Full Stack].
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 💻 Sobre o Projeto
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A **EfoodAPI** é o backend responsável por orquestrar todo o ecossistema de um aplicativo de delivery. Ela gerencia desde o cadastro de restaurantes e cardápios até o fluxo complexo de realização e acompanhamento de pedidos.
 
-## Expanding the ESLint configuration
+A aplicação foi construída focando em:
+* Escalabilidade e Clean Code.
+* Tratamento de exceções personalizado.
+* Modelagem de dados relacional complexa.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Funcionalidades
+
+- [x] **Cadastro de Restaurantes:** Gerenciamento completo (CRUD), incluindo tipos de cozinha e horário de funcionamento.
+- [x] **Gestão de Produtos:** Adição de pratos ao cardápio com fotos e descrições.
+- [x] **Fluxo de Pedidos:** Emissão, confirmação, entrega e cancelamento de pedidos.
+- [x] **Controle de Acesso:** Autenticação e permissões (Admin vs Usuário).
+- [x] **Formas de Pagamento:** Gerenciamento de métodos aceitos por cada restaurante.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
+
+* **Linguagem:** [Java 17 / Node.js / Python]
+* **Framework:** [Spring Boot 3 / Express / Django]
+* **Banco de Dados:** [MySQL / PostgreSQL / MongoDB]
+* **Migrações:** [Flyway / Liquibase]
+* **ORM:** [JPA / Hibernate / Prisma]
+* **Segurança:** [Spring Security / JWT]
+* **Build:** [Maven / Gradle / NPM]
+
+---
+
+## 🎨 Diagrama de Entidade-Relacionamento (DER)
+
+> (Opcional: Coloque uma imagem do seu diagrama aqui ou use o Mermaid abaixo)
+
+```mermaid
+erDiagram
+    RESTAURANTE ||--o{ PRODUTO : possui
+    RESTAURANTE ||--o{ PEDIDO : recebe
+    USUARIO ||--o{ PEDIDO : faz
+    PEDIDO ||--|{ ITEM_PEDIDO : contem
+    FORMA_PAGAMENTO }|--|{ RESTAURANTE : aceita
