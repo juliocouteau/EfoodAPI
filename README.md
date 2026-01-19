@@ -6,7 +6,7 @@
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/SEU_USUARIO/EfoodAPI?style=for-the-badge)
 ![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/SEU_USUARIO/EfoodAPI?style=for-the-badge)
 
-> Uma API RESTful robusta para gestão de restaurantes e pedidos de delivery, desenvolvida como parte do desafio [NOME DO CURSO/BOOTCAMP, ex: EBAC Full Stack].
+
 
 ---
 
@@ -44,15 +44,3 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 * **Build:** [Maven / Gradle / NPM]
 
 ---
-
-## 🎨 Diagrama de Entidade-Relacionamento (DER)
-
-> (Opcional: Coloque uma imagem do seu diagrama aqui ou use o Mermaid abaixo)
-
-```mermaid
-erDiagram
-    RESTAURANTE ||--o{ PRODUTO : possui
-    RESTAURANTE ||--o{ PEDIDO : recebe
-    USUARIO ||--o{ PEDIDO : faz
-    PEDIDO ||--|{ ITEM_PEDIDO : contem
-    FORMA_PAGAMENTO }|--|{ RESTAURANTE : aceita
