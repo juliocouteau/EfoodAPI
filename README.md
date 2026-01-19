@@ -4,7 +4,6 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/juliocouteau/EfoodAPI?style=for-the-badge)
 ![GitHub forks](https://img.shields.io/github/forks/juliocouteau/EfoodAPI?style=for-the-badge)
 ![Bitbucket open issues](https://img.shields.io/bitbucket/issues/juliocouteau/EfoodAPI?style=for-the-badge)
-![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/juliocouteau/EfoodAPI?style=for-the-badge)
 
 
 
